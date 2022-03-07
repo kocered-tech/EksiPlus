@@ -5,6 +5,9 @@
 //  Created by Erdem Koçer on 5.03.2022.
 //
 
+// swiftlint:disable line_length
+// swiftlint:disable identifier_name
+
 import Foundation
 
 class DebugConstants {
@@ -31,6 +34,7 @@ class DebugConstants {
                                          ENTRY_4,
                                          ENTRY_5,
                                          ENTRY_6] }
+
 // var TOPIC_1: TopicModelDAO { TopicModelDAO(id: 5,
 //                         title: "sophie turner",
 //                         entries: POPULAR_ENTRIES,
@@ -44,3 +48,5 @@ class DebugConstants {
 //                         matterCount: 5)
 //    }
 }
+// swiftlint:enable line_length
+// swiftlint:enable identifier_name

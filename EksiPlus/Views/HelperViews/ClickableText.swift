@@ -39,15 +39,17 @@ struct ClickableText: View {
 
     private func clickable() -> String {
         var clickableText = text
-        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: clickableText, options: [], range: NSRange(location: 0, length: clickableText.utf16.count))
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let matches = detector?.matches(in: clickableText, options: [],
+                                           range: NSRange(location: 0,
+                                                                                          length: clickableText.utf16.count)) {
+            for match in matches {
+                guard let range = Range(match.range, in: clickableText) else { continue }
+                let url = clickableText[range]
+                // clickableText = String(clickableText.replacingOccurrences(of: url, with: "[Click here](\(url))"))
+                clickableText = String(clickableText.replacingOccurrences(of: url, with: "**\(url)**"))
 
-        for match in matches {
-            guard let range = Range(match.range, in: clickableText) else { continue }
-            let url = clickableText[range]
-            // clickableText = String(clickableText.replacingOccurrences(of: url, with: "[Click here](\(url))"))
-            clickableText = String(clickableText.replacingOccurrences(of: url, with: "**\(url)**"))
-
+            }
         }
 
         clickableText = String(clickableText.replacingOccurrences(of: "`", with: ""))
