@@ -97,7 +97,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@linkedIn](https://www.linkedin.com/in/erdemkocer) - erdemko@gmail.com
+Erdem Kocer - [@linkedIn](https://www.linkedin.com/in/erdemkocer) - erdemko@gmail.com
 
 Project Link: [EksiPlus](https://github.com/kocered-tech/EksiPlus)
 
