@@ -12,7 +12,7 @@ import SwiftUI
 class TopicsViewModel: ObservableObject {
     @Published var currentPage = 1
     @Published var canLoadNextPage = true
-    
+
     func performRequest() {
         RequestManager.getPopularTopics(page: currentPage) { data in
             if let data = data {

@@ -9,20 +9,20 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        
+
         TabView {
             TopicsView()
                 .tabItem {
                     Label("Gündem", systemImage: "list.dash")
                 }
                 .tag(1)
-            
+
             TopicsView(topicType: .today)
                 .tabItem {
                     Label("Bugün", systemImage: "list.dash")
                 }
                 .tag(2)
-            
+
             Text("Hello, World!")
                 .tabItem {
                     Label("Profil", systemImage: "person")

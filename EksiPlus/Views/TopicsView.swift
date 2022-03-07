@@ -11,25 +11,25 @@ struct TopicsView: View {
     var popularEntries: [EntryModel]
     @ObservedObject var repository = Repository.shared
     @ObservedObject var vm = TopicsViewModel()
-    
+
     var topicType: TopicType
-    
+
     enum TopicType {
         case popular
         case today
     }
-    
+
     init(topicType: TopicType = .popular) {
         self.topicType = topicType
         popularEntries = DebugConstants.shared.POPULAR_ENTRIES
     }
-    
+
     private func onScrolledAtBottom() {
         vm.performRequest()
     }
-    
+
     func getScrollIndex(_ topicCount: Int, refreshBefore: Int = 5) -> Int {
-        
+
         switch topicCount {
         case 0...refreshBefore:
             return topicCount
@@ -39,7 +39,7 @@ struct TopicsView: View {
             return topicCount
         }
     }
-    
+
     var body: some View {
         NavigationView {
             List {

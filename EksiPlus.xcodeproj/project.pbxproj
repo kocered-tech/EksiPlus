@@ -232,6 +232,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 499B8B0227D2D5A5005E6634 /* Build configuration list for PBXNativeTarget "EksiPlus" */;
 			buildPhases = (
+				491963AA27D6370B0006C2F0 /* ShellScript */,
 				499B8ADA27D2D5A1005E6634 /* Sources */,
 				499B8ADB27D2D5A1005E6634 /* Frameworks */,
 				499B8ADC27D2D5A1005E6634 /* Resources */,
@@ -358,6 +359,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		491963AA27D6370B0006C2F0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		499B8ADA27D2D5A1005E6634 /* Sources */ = {

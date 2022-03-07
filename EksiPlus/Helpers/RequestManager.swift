@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class RequestManager {
-    
+
     static func getAnonymousToken(completion: @escaping (String?) -> Void) {
         let headers: HTTPHeaders = [
             "Host": "api.eksisozluk.com",
@@ -17,16 +17,17 @@ class RequestManager {
             "Content-Length": "184",
             "Accept-Encoding": "gzip, deflate",
             "User-Agent": "okhttp/3.12.1",
-            "Connection": "close",
+            "Connection": "close"
         ]
-        
+
         let parameters: [String: String] = [
             "Api-Secret": "68f779c5-4d39-411a-bd12-cbcc50dc83dd",
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "ClientUniqueId": "1a62383d-742e-4bcf-bf77-2fe1a1edcd39"
         ]
-        
-        AF.request("https://api.eksisozluk.com/v2/account/anonymoustoken", method: .post, parameters: parameters, headers: headers)
+
+        AF.request("https://api.eksisozluk.com/v2/account/anonymoustoken",
+                   method: .post, parameters: parameters, headers: headers)
             .responseDecodable(of: AnonymousTokenDAO.self) { response in
                 if let dao = response.value {
                     completion(dao.data.accessToken)
@@ -35,7 +36,7 @@ class RequestManager {
                 }
             }
     }
-    
+
     static func getEntry(entryId: String, completion: @escaping ([EntryModel]?) -> Void) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
@@ -46,7 +47,7 @@ class RequestManager {
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "Connection": "close"
         ]
-        
+
         AF.request("https://api.eksisozluk.com/v2/entry/\(entryId)", method: .get, headers: headers)
             .responseDecodable(of: EntryDetailDAO.self) { response in
                 if let response = response.value {
@@ -56,9 +57,9 @@ class RequestManager {
                 }
             }
     }
-    
+
     static func getTopic(topicId: String, completion: @escaping (TopicDetail?) -> Void) {
-        
+
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
             "Host": "api.eksisozluk.com",
@@ -68,7 +69,7 @@ class RequestManager {
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "Connection": "close"
         ]
-        
+
         AF.request("https://api.eksisozluk.com/v2/topic/\(topicId)", method: .get, headers: headers)
             .responseDecodable(of: TopicModelDAO.self) { response in
                 if let response = response.value {
@@ -78,7 +79,7 @@ class RequestManager {
                 }
             }
     }
-    
+
     static func getPopularTopics(page: Int = 1, completion: @escaping (PopularTopicsData?) -> Void) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
@@ -89,7 +90,7 @@ class RequestManager {
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "Connection": "close"
         ]
-        
+
         AF.request("https://api.eksisozluk.com/v2/index/popular/?p=\(page)", method: .post, headers: headers)
             .responseDecodable(of: PopularTopicsDAO.self) { response in
                 if let response = response.value {
@@ -99,7 +100,7 @@ class RequestManager {
                 }
             }
     }
-    
+
     static func getTodaysTopics(page: Int = 1) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
@@ -110,7 +111,7 @@ class RequestManager {
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "Connection": "close"
         ]
-        
+
         AF.request("https://api.eksisozluk.com/v2/index/today/?p=\(page)", method: .get, headers: headers)
             .responseDecodable(of: PopularTopicsDAO.self) { response in
                 if let response = response.value {
@@ -118,7 +119,7 @@ class RequestManager {
                 }
             }
     }
-    
+
     static func favorite(id: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
@@ -128,18 +129,15 @@ class RequestManager {
             "Content-Type": "application/x-www-form-urlencoded",
             "Connection": "close"
         ]
-        
+
         let parameters: [String: String] = [
             "Id": id
         ]
-        
-        AF.request("https://api.eksisozluk.com/v2/entry/favorite", method: .post,parameters: parameters, headers: headers)
-            .responseDecodable(of: FavoriteModelDAO.self) { response in
-            }
-            .responseString { response in
-            }
+
+        AF.request("https://api.eksisozluk.com/v2/entry/favorite",
+                   method: .post, parameters: parameters, headers: headers)
     }
-    
+
     static func unFavorite(id: String) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer " + UserService.shared.bearer,
@@ -149,20 +147,14 @@ class RequestManager {
             "Content-Type": "application/x-www-form-urlencoded",
             "Connection": "close"
         ]
-        
         let parameters: [String: String] = [
             "Id": id
         ]
-        
-        AF.request("https://api.eksisozluk.com/v2/entry/unfavorite", method: .post,parameters: parameters, headers: headers)
-            .responseDecodable(of: FavoriteModelDAO.self) { response in
-                print(response)
-            }
-            .responseString { response in
-                print(response)
-            }
+
+        AF.request("https://api.eksisozluk.com/v2/entry/unfavorite",
+                   method: .post, parameters: parameters, headers: headers)
     }
-    
+
     static func getToken(username: String, password: String, completion: @escaping (String?) -> Void) {
         let headers: HTTPHeaders = [
             "Host": "api.eksisozluk.com",
@@ -171,16 +163,16 @@ class RequestManager {
             "User-Agent": "okhttp/3.12.1",
             "Connection": "close"
         ]
-        
+
         let parameters: [String: String] = [
             "Api-Secret": "68f779c5-4d39-411a-bd12-cbcc50dc83dd",
             "Client-Secret": "eabb8841-258d-4561-89a6-66c6501dee83",
             "ClientUniqueId": "1a62383d-742e-4bcf-bf77-2fe1a1edcd39",
-            "grant_type":"password",
-            "password":password,
-            "username":username
+            "grant_type": "password",
+            "password": password,
+            "username": username
         ]
-        
+
         AF.request("https://api.eksisozluk.com/Token", method: .post, parameters: parameters, headers: headers)
             .responseDecodable(of: BearerToken.self) { response in
                 debugPrint(response)

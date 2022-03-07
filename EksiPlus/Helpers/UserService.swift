@@ -18,7 +18,7 @@ class UserService {
     var bearer: String
     var uniqueID: String
     var isLoggedIn = false
-    
+
     init(clientSecret: String, apiSecret: String, bearer: String, uniqueID: String) {
         self.clientSecret = "eabb8841-258d-4561-89a6-66c6501dee83"
         self.apiSecret = "68f779c5-4d39-411a-bd12-cbcc50dc83dd"

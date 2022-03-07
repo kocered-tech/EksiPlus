@@ -9,9 +9,9 @@ import XCTest
 @testable import EksiPlus
 
 class EksiPlusTests: XCTestCase {
-    
+
     var sut: EksiPlusApp!
-    
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = EksiPlusApp()
@@ -33,14 +33,14 @@ class EksiPlusTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
+
     func testScrollIndexIsBetweenIndicatedValues() {
         // Given
         let topicCount = 15
         let refreshBefore = 5
-        
+
         let index = TopicsView().getScrollIndex(topicCount, refreshBefore: refreshBefore)
-        
+
         XCTAssertEqual(10, index)
     }
 

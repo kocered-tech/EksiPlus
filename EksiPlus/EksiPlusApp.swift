@@ -12,10 +12,9 @@ struct EksiPlusApp: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
-            
         }
     }
-} 
+}
 extension UINavigationController {
 
   open override func viewWillLayoutSubviews() {

@@ -37,7 +37,7 @@ struct EntryModel: Codable, Identifiable {
         case isPinnedOnProfile = "IsPinnedOnProfile"
         case isVerifiedAccount = "IsVerifiedAccount"
     }
-    
+
     mutating func toggle() {
         self.isFavorite?.toggle()
     }

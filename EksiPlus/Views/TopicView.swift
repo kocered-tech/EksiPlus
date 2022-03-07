@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopicView: View {
     var topicId: String
-    
+
     @State var topic: TopicDetail?
 
     var body: some View {
@@ -31,7 +31,7 @@ struct TopicView: View {
         }
     }
     }
-    
+
     private func performOnAppear() {
         RequestManager.getTopic(topicId: topicId) { topicModel in
             if let topicModel = topicModel {

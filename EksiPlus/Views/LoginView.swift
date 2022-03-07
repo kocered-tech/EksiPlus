@@ -11,14 +11,14 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State private var isShowingMainView = false
-    
+
     var body: some View {
             VStack {
                 Form {
                     TextField("e-mail", text: $email)
-                    
+
                     TextField("şifre", text: $password)
-                    
+
                     Button("Giriş yap") {
                         RequestManager.getToken(username: email, password: password) { token in
                             if token != nil {
@@ -32,10 +32,10 @@ struct LoginView: View {
                     }
                     .foregroundColor(.green)
                     .font(.headline)
-                    
+
                     Section("") {
                         Button("Giriş yapmadan devam et") {
-                            RequestManager.getAnonymousToken{ token in
+                            RequestManager.getAnonymousToken { token in
                                 if token != nil {
                                     UserService.shared.bearer = token!
                                     isShowingMainView = true
@@ -47,7 +47,7 @@ struct LoginView: View {
                         .foregroundColor(.green)
                         .font(.headline)
                     }
-                    
+
                 }
                 Spacer()
             }
