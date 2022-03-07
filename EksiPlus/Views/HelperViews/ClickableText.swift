@@ -40,9 +40,10 @@ struct ClickableText: View {
     private func clickable() -> String {
         var clickableText = text
         let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let matches = detector?.matches(in: clickableText, options: [],
-                                           range: NSRange(location: 0,
-                                                                                          length: clickableText.utf16.count)) {
+        if let matches = detector?.matches(
+            in: clickableText, options: [],
+            range: NSRange(location: 0,
+            length: clickableText.utf16.count)) {
             for match in matches {
                 guard let range = Range(match.range, in: clickableText) else { continue }
                 let url = clickableText[range]
